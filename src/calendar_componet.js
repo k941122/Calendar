@@ -1,31 +1,28 @@
-import React, {useState} from "react";
-// import styled from "."
+import React, { useState } from "react";
 import Calendar from "react-calendar";
 import moment from "moment/moment";
-import 'react-calendar/dist/Calendar.css';
-// import { styled } from 'styled-components';
+import "./calendar.css";
 
-const Calendarcomponent = ({onChange, value}) =>  {
-    const [nowDate, setNowDate] = useState("날짜");
-    const [isOpen, setIsOpen] = useState(false);
+const Calendarcomponent = ({ onChange, value }) => {
+  const [nowDate, setNowDate] = useState("날짜");
 
-    const handleToggleCalendar = () => {
-        setIsOpen (!isOpen);
-    }
-
-    const handleDateChange = (selectedDate) => {
-        onChange(selectedDate);
-        setIsOpen(false);
-        setNowDate(moment(selectedDate).format("YYYY년 MM월 DD일"))
-    }
-    return(
-        <div className="CalendarContainer">
-            <div className="DropDowonButton" onClick = {handleToggleCalendar}> </div>
-            <div className="CalendarWrapper" isOpen={isOpen}>
-            <Calendar onChange = {handleDateChange} value = {value} />
-            </div>
-        </div>
-    );
-}
+  const handleDateChange = (selectedDate) => {
+    onChange(selectedDate);
+    setNowDate(moment(selectedDate).format("YYYY년 MM월 DD일"));
+  };
+  return (
+    <div className="CalendarContainer">
+      <h1>Todo Calendar</h1>
+      <div className="CalendarWrapper">
+        <Calendar
+          onChange={handleDateChange}
+          value={value}
+          formatDay={(locale, date) => moment(date).format("DD")}
+          showNeighboringMonth={false}
+        />
+      </div>
+    </div>
+  );
+};
 
 export default Calendarcomponent;
