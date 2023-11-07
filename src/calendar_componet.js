@@ -9,6 +9,7 @@ const Calendarcomponent = ({ onChange, value }) => {
   const handleDateChange = (selectedDate) => {
     onChange(selectedDate);
     setNowDate(moment(selectedDate).format("YYYY년 MM월 DD일"));
+    console.log("테스트");
   };
   return (
     <div className="CalendarContainer">
